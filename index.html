@@ -108,6 +108,17 @@ h1 em { font-style: normal; color: var(--accent); }
   .vignette { background: linear-gradient(180deg, rgba(11,13,15,.4) 0%, rgba(11,13,15,.88) 45%, var(--bg) 100%); }
 }
 @media (prefers-reduced-motion: reduce) { .cta { transition: none; } }
+
+/* Luma's embed script restyles .luma-checkout--button; keep ours. */
+a.cta.luma-checkout--button {
+  display: inline-flex !important; align-items: center !important; gap: 10px !important;
+  min-height: 52px !important; padding: 0 24px !important; margin: 0 !important;
+  background: #ffc23d !important; color: #0b0d0f !important;
+  font-family: "Archivo", "Helvetica Neue", Arial, sans-serif !important; font-weight: 700 !important; font-size: 16px !important; line-height: 1 !important;
+  border: 0 !important; border-radius: 4px !important; box-shadow: none !important; text-decoration: none !important;
+}
+a.cta.luma-checkout--button:hover { background: #ffd068 !important; }
+a.cta.luma-checkout--button svg { width: 16px !important; height: 16px !important; }
 </style>
 <style>body{margin:0} :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
 </head>
