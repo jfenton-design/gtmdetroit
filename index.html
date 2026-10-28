@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A quarterly, in-person meetup for Detroit's go-to-market practitioners. No pitches, no vendors.">
+<meta property="og:title" content="GTMDetroit">
+<meta property="og:description" content="Detroit GTM, in one room. A quarterly, in-person meetup for go-to-market practitioners.">
+<link rel="icon" type="image/png" href="gtmdetroit-avatar.png">
+<title>GTMDetroit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&family=Big+Shoulders+Display:wght@800;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one quiet screen. Wordmark top-left, statement and CTA below, details as a mono strip; a live field of lane dashes drifts behind everything. */
+:root {
+  --bg: #0b0d0f;
+  --fg: #eceeea;
+  --dim: #8d938f;
+  --line: #22272a;
+  --accent: #ffc23d;
+  --pattern: #3a4247;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --display-weight: 900;
+  --display-track: -0.01em;
+  --body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: dark;
+}
+
+html, body { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+#field { position: fixed; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; }
+.vignette {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(90deg, var(--bg) 0%, rgba(11,13,15,.92) 34%, rgba(11,13,15,.35) 70%, rgba(11,13,15,.1) 100%);
+}
+.page {
+  position: relative; z-index: 2;
+  min-height: 100%;
+  box-sizing: border-box;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 64px;
+  padding-block: clamp(24px, 5vw, 56px);
+  padding-left: max(16px, env(safe-area-inset-left, 0px), 5vw);
+  padding-right: max(16px, env(safe-area-inset-right, 0px), 5vw);
+}
+.top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.mark {
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+  letter-spacing: .02em;
+  font-size: 28px;
+  line-height: 1;
+}
+.mark b { font-weight: inherit; color: var(--accent); }
+.coords { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--dim); }
+
+.hero { display: flex; flex-direction: column; gap: 28px; max-width: 980px; }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); display: flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(255,194,61,.15); }
+h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-track);
+  font-size: clamp(52px, 9vw, 124px);
+  line-height: .88;
+  text-transform: uppercase;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+h1 em { font-style: normal; color: var(--accent); }
+.lede { margin: 0; max-width: 34ch; font-size: clamp(18px, 2.1vw, 24px); line-height: 1.4; color: #cfd3cf; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+.cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 52px; padding: 0 24px;
+  background: var(--accent); color: #0b0d0f;
+  font-family: var(--body); font-weight: 700; font-size: 16px;
+  text-decoration: none; border-radius: 4px;
+  transition: transform .2s ease, background .2s ease;
+}
+.cta:hover { background: #ffd068; transform: translateY(-1px); }
+.cta:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+.cta svg { width: 16px; height: 16px; }
+.note { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; color: var(--dim); }
+
+.facts {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  max-width: 980px;
+}
+.fact { display: flex; flex-direction: column; gap: 8px; padding: 20px 24px 0 0; min-width: 0; }
+.fact dt { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+.fact dd { margin: 0; font-size: 16px; line-height: 1.45; }
+
+
+@media (max-width: 640px) {
+  .facts { grid-template-columns: 1fr; }
+  .fact { padding: 16px 0 0; }
+  .vignette { background: linear-gradient(180deg, rgba(11,13,15,.4) 0%, rgba(11,13,15,.88) 45%, var(--bg) 100%); }
+}
+@media (prefers-reduced-motion: reduce) { .cta { transition: none; } }
+</style>
+<style>body{margin:0} :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+</head>
+<body>
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main class="page">
+  <header class="top">
+    <div class="mark"><b>GTM</b>Detroit</div>
+    <div class="coords">42.33° N · 83.05° W</div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Meetup 01 · January 2027</div>
+    <h1>Detroit GTM, <em>in&nbsp;one&nbsp;room.</em></h1>
+    <p class="lede">A quarterly, in-person meetup for the people who do go-to-market work. Sales, marketing, RevOps, CS and founders. No pitches, no vendors.</p>
+    <div class="actions">
+      <a class="cta luma-checkout--button" href="https://luma.com/tm0iu4oz" target="_blank" rel="noopener" data-luma-action="checkout" data-luma-event-id="evt-Hv82xkW7yVCUvTp" id="cta">Save my seat
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg>
+      </a>
+      <span class="note">Free · Seats are limited</span>
+    </div>
+  </section>
+
+  <dl class="facts">
+    <div class="fact"><dt>Who</dt><dd>In-house and independent GTM practitioners in Metro Detroit.</dd></div>
+    <div class="fact"><dt>What</dt><dd>Drinks, a few short talks, open floor. Real notes on what's working.</dd></div>
+    <div class="fact"><dt>When</dt><dd>Quarterly. First one in January, venue to be announced.</dd></div>
+  </dl>
+</main>
+
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  // Background: lane dashes drifting along a slanted grid, with the odd pair of headlights.
+  var canvas = document.getElementById('field');
+  var ctx = canvas.getContext('2d');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W, H, dpr, lanes = [], cars = [];
+  var ANGLE = -0.42;                     // radians, the slant of the lanes
+  var cos = Math.cos(ANGLE), sin = Math.sin(ANGLE);
+  var GAP = 34, DASH = 14, SPACE = 22;   // lane pitch, dash length, gap between dashes
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var diag = Math.sqrt(W * W + H * H);
+    lanes = [];
+    for (var o = -diag; o <= diag; o += GAP) {
+      lanes.push({ off: o, speed: 0.15 + ((o / GAP) % 5 + 5) % 5 * 0.07, phase: Math.random() * (DASH + SPACE) });
+    }
+  }
+
+  function spawnCar() {
+    var l = lanes[(Math.random() * lanes.length) | 0];
+    cars.push({ lane: l, t: -Math.sqrt(W * W + H * H), v: 6 + Math.random() * 7, len: 90 + Math.random() * 140 });
+  }
+
+  // world coords: u runs along a lane, v across lanes; centred on the canvas
+  function pt(u, v) { return [W / 2 + u * cos - v * sin, H / 2 + u * sin + v * cos]; }
+
+  var last = 0, carTimer = 0;
+  function frame(ts) {
+    var dt = Math.min(48, ts - last || 16); last = ts;
+    ctx.clearRect(0, 0, W, H);
+    var diag = Math.sqrt(W * W + H * H);
+    var pattern = getComputedStyle(root).getPropertyValue('--pattern').trim() || '#3a4247';
+    var accent = getComputedStyle(root).getPropertyValue('--accent').trim() || '#ffc23d';
+
+    ctx.lineCap = 'butt';
+    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = pattern;
+    ctx.beginPath();
+    for (var i = 0; i < lanes.length; i++) {
+      var L = lanes[i];
+      if (!reduce) L.phase = (L.phase + L.speed * dt * 0.06) % (DASH + SPACE);
+      for (var u = -diag + L.phase; u < diag; u += DASH + SPACE) {
+        var a = pt(u, L.off), b = pt(u + DASH, L.off);
+        if ((a[0] < -20 && b[0] < -20) || (a[0] > W + 20 && b[0] > W + 20)) continue;
+        if ((a[1] < -20 && b[1] < -20) || (a[1] > H + 20 && b[1] > H + 20)) continue;
+        ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]);
+      }
+    }
+    ctx.stroke();
+
+    if (!reduce) {
+      carTimer -= dt;
+      if (carTimer <= 0) { spawnCar(); carTimer = 700 + Math.random() * 1400; }
+      for (var c = cars.length - 1; c >= 0; c--) {
+        var car = cars[c];
+        car.t += car.v * dt * 0.06;
+        var head = pt(car.t, car.lane.off), tail = pt(car.t - car.len, car.lane.off);
+        var g = ctx.createLinearGradient(tail[0], tail[1], head[0], head[1]);
+        g.addColorStop(0, 'rgba(255,194,61,0)');
+        g.addColorStop(1, accent);
+        ctx.strokeStyle = g; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(tail[0], tail[1]); ctx.lineTo(head[0], head[1]); ctx.stroke();
+        if (car.t - car.len > diag) cars.splice(c, 1);
+      }
+      requestAnimationFrame(frame);
+    }
+  }
+
+  resize();
+  window.addEventListener('resize', function () { resize(); if (reduce) frame(0); });
+  if (!reduce) { for (var k = 0; k < 3; k++) { spawnCar(); cars[k].t = (Math.random() - 0.2) * 900; } }
+  requestAnimationFrame(frame);
+})();
+</script>
+<script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
+</body>
+</html>
